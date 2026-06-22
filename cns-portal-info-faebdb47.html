@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简明指南 · leyu 使用提示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f1f4f8;
+            color: #1e2a3a;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        /* 深色头图区 */
+        .hero {
+            background: linear-gradient(160deg, #0b1a2b 0%, #162d44 100%);
+            color: #dfe9f3;
+            padding: 4.5rem 1.5rem 3.8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3a9bdc, #6fc1f0, #3a9bdc);
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.9rem;
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 680px;
+            margin: 0 auto;
+            opacity: 0.88;
+            font-weight: 350;
+        }
+        /* 浅色正文区 */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2.8rem 1.8rem 3.5rem;
+        }
+        .intro-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem 2.2rem;
+            box-shadow: 0 8px 28px rgba(0,20,40,0.06);
+            margin-bottom: 2.2rem;
+        }
+        .intro-card p {
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+        }
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+        .highlight-link {
+            color: #1a75bb;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .highlight-link:hover {
+            color: #0a4e7a;
+            border-bottom-color: #0a4e7a;
+        }
+        /* 特点列表 — 卡片式三列 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2.2rem 0 1rem;
+        }
+        .feature-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+            border-left: 4px solid #3a9bdc;
+            transition: transform 0.15s ease, box-shadow 0.2s;
+        }
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0,32,64,0.08);
+        }
+        .feature-item strong {
+            display: block;
+            font-size: 1.05rem;
+            color: #0b2a44;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #36506b;
+            line-height: 1.5;
+        }
+        /* 访问提醒 / 注意事项 */
+        .notice-box {
+            background: #e7eef7;
+            border-radius: 18px;
+            padding: 1.8rem 2rem;
+            margin: 2.5rem 0 1.8rem;
+            border: 1px solid #cbdae9;
+        }
+        .notice-box h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #103a5c;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .notice-box h3::before {
+            content: '⚑';
+            font-size: 1.25rem;
+            color: #1a6a9e;
+        }
+        .notice-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .notice-box li {
+            padding: 0.4rem 0 0.4rem 1.6rem;
+            position: relative;
+            font-size: 0.98rem;
+            color: #1f3c57;
+        }
+        .notice-box li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #3a9bdc;
+            font-weight: 600;
+        }
+        /* FAQ 摘要（简版） */
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            margin-top: 1.2rem;
+        }
+        .faq-mini details {
+            border-bottom: 1px solid #e2e9f2;
+            padding: 0.9rem 0;
+        }
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+        }
+        .faq-mini summary {
+            font-weight: 500;
+            color: #1a3f62;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1rem;
+        }
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-mini summary::before {
+            content: '▸';
+            color: #3a9bdc;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .faq-mini details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        .faq-mini .answer {
+            padding: 0.7rem 0 0.3rem 1.8rem;
+            font-size: 0.95rem;
+            color: #2d4b6b;
+            line-height: 1.5;
+        }
+        .footer-note {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6a7f96;
+            border-top: 1px solid #d5e0ec;
+            padding-top: 1.8rem;
+        }
+        .footer-note a {
+            color: #1a75bb;
+            text-decoration: none;
+            font-weight: 400;
+        }
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 540px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.98rem; }
+            .intro-card { padding: 1.8rem 1.2rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .notice-box { padding: 1.4rem 1.2rem; }
+            .faq-mini { padding: 1.2rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>leyu · 访问路径与操作指要</h1>
+        <p>一份面向使用者的简明导航提示，涵盖核心功能、访问提醒与常见疑问。</p>
+    </header>
+
+    <div class="container">
+        <!-- 承接段落：自然引入 -->
+        <div class="intro-card">
+            <p>在日常使用中，熟悉平台的访问方式与安全习惯能显著提升效率。<strong>leyu</strong> 作为集信息整合与操作入口于一体的服务页面，其结构清晰，但初次接触者仍可能对部分流程感到生疏。以下内容从实际使用视角出发，梳理了核心环节与注意事项。</p>
+            <p>若你尚未访问过主界面，建议先通过 <a href="https://cns-portal-leyu.com" class="highlight-link">leyu</a> 快速定位，再配合下文列表逐步了解各模块用途。保持浏览器版本更新、留意页面提示信息，能避免不少常见障碍。</p>
+        </div>
+
+        <!-- 特点列表：简明实用 -->
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong>统一入口</strong>
+                <p>主页面聚合了导航、状态与快捷操作，减少反复跳转，适合高频使用场景。</p>
+            </div>
+            <div class="feature-item">
+                <strong>响应布局</strong>
+                <p>针对桌面与移动端均作了适配，字号与间距跟随设备自动调整，阅读体验稳定。</p>
+            </div>
+            <div class="feature-item">
+                <strong>信息分区</strong>
+                <p>顶部引导、内容主区、辅助说明各占其位，降低信息过载，便于快速定位。</p>
+            </div>
+            <div class="feature-item">
+                <strong>低依赖设计</strong>
+                <p>页面不依赖外部脚本或复杂框架，加载轻量，适合网络环境一般的场景使用。</p>
+            </div>
+        </div>
+
+        <!-- 访问提醒：温和但清晰 -->
+        <div class="notice-box">
+            <h3>访问提醒</h3>
+            <ul>
+                <li>建议使用最新版 Chrome、Firefox 或 Edge 浏览器，确保页面渲染完整</li>
+                <li>如遇加载异常，可先检查网络连接，或尝试清除缓存后重新载入</li>
+                <li>部分功能可能需启用 JavaScript，请保持浏览器默认设置开启</li>
+                <li>不要在公共设备上勾选“记住密码”或自动填充敏感信息</li>
+                <li>若页面长时间无响应，可尝试通过 <a href="https://cns-portal-leyu.com" class="highlight-link">leyu</a> 直接进入，绕开中间跳转</li>
+            </ul>
+        </div>
+
+        <!-- FAQ 摘要：温和结尾 -->
+        <div class="faq-mini">
+            <details>
+                <summary>leyu 页面是否需要注册或登录？</summary>
+                <div class="answer">该页面为信息聚合与导航入口，通常不需要额外注册，直接打开即可查看内容。部分深层操作可能依据服务类型有不同要求。</div>
+            </details>
+            <details>
+                <summary>为什么有时页面布局显示异常？</summary>
+                <div class="answer">多数情况与浏览器兼容性或缓存有关。请尝试强制刷新（Ctrl+F5）或更换浏览器。若问题持续，可检查是否有扩展插件干扰。</div>
+            </details>
+            <details>
+                <summary>如何获取功能更新的提醒？</summary>
+                <div class="answer">目前页面未设置主动推送通知，建议定期访问 <a href="https://cns-portal-leyu.com" class="highlight-link">leyu</a> 查看最新布局与说明，变化通常会在主页标题区域体现。</div>
+            </details>
+        </div>
+
+        <div class="footer-note">
+            <p>内容仅作使用参考 · 具体操作以实际页面为准</p>
+            <p style="margin-top: 6px;">主域：<a href="https://cns-portal-leyu.com">leyu</a></p>
+        </div>
+    </div>
+</body>
+</html>
